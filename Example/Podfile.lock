@@ -1,0 +1,16 @@
+PODS:
+  - DKExtensions (0.1.0)
+
+DEPENDENCIES:
+  - DKExtensions (from `../`)
+
+EXTERNAL SOURCES:
+  DKExtensions:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DKExtensions: fae1a7a1d3c631c06aecb3c67525747d10972928
+
+PODFILE CHECKSUM: aec8b0e45dbce8455105f0019267f7253e6c3da6
+
+COCOAPODS: 1.5.3
