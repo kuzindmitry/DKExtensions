@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'DKExtensions_Example' do
+  pod 'DKExtensions', :path => '../'
+
+  target 'DKExtensions_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
