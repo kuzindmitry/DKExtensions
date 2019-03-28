@@ -24,6 +24,10 @@ public class HTTP {
     typealias Success = ((_ data: Data, _ statusCode: Int) -> Void)
     typealias Failure = ((_ error: Error, _ statusCode: Int) -> Void)
     
+    static let `default` = HTTP()
+    
+    var printLogs: Bool = false
+    
     public private (set) var requestsCount: Int = 0 {
         didSet {
             DispatchQueue.main.async {
@@ -39,13 +43,16 @@ public class HTTP {
     private func execute(_ method: HTTPMethod = .get, urlString: String, params: Parameters? = nil, encoding: ParameterEncoding, headers: HTTPHeaders?, success: Success? = nil, failure: Failure? = nil) {
 
         requestsCount += 1
-
+        if printLogs {
+            print("\(method.rawValue) \(urlString) \(params ?? [:])")
+        }
         Alamofire.request(urlString, method: method, parameters: params, encoding: encoding, headers: headers).responseData { (response) in
-            if let data = response.data {
+            if let data = response.data, self.printLogs {
+                print("\(method.rawValue) response: ")
                 print(String(data: data, encoding: .utf8)!)
             }
             self.requestsCount -= 1
-
+            
             if self.isValid(statusCode: response.response?.statusCode ?? 0) {
                 if let d = response.data {
                     success?(d, response.response?.statusCode ?? 0)

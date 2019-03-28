@@ -9,7 +9,7 @@ import UIKit
 
 public typealias JSONResponse = [String : Any]
 
-protocol EntityDecodable {
+public protocol EntityDecodable {
     
     associatedtype Model where Model: Decodable
     
@@ -32,7 +32,7 @@ public extension EntityDecodable {
     
 }
 
-protocol EntityEncodable {
+public protocol EntityEncodable {
     
     associatedtype Model where Model: Encodable
     
