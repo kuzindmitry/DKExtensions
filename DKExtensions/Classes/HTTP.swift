@@ -26,6 +26,8 @@ open class HTTP {
     
     public var printLogs: Bool = false
     
+    public init() {}
+    
     public private (set) var requestsCount: Int = 0 {
         didSet {
             DispatchQueue.main.async {
