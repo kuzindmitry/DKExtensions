@@ -19,14 +19,12 @@ public enum HTTPEncoding {
     case url
 }
 
-public class HTTP {
+open class HTTP {
     
-    typealias Success = ((_ data: Data, _ statusCode: Int) -> Void)
-    typealias Failure = ((_ error: Error, _ statusCode: Int) -> Void)
+    public typealias Success = ((_ data: Data, _ statusCode: Int) -> Void)
+    public typealias Failure = ((_ error: Error, _ statusCode: Int) -> Void)
     
-    static let `default` = HTTP()
-    
-    var printLogs: Bool = false
+    public var printLogs: Bool = false
     
     public private (set) var requestsCount: Int = 0 {
         didSet {
@@ -77,31 +75,31 @@ public class HTTP {
         }
     }
     
-    func get<T: Decodable>(model: T, urlString: String, params: [String: Any]? = nil, headers: [String: String]? = nil, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
+    public func getModel<T: Decodable>(_ urlString: String, params: [String: Any]? = nil, headers: [String: String]? = nil, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
         get(urlString, params: params, headers: headers, success: { (data, statusCode) in
             success?(self.decode(data), statusCode)
         }, failure: failure)
     }
     
-    func post<T: Decodable>(model: T, _ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
+    public func postModel<T: Decodable>(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
         post(urlString, params: params, headers: headers, encoding: encoding, success: { (data, statusCode) in
             success?(self.decode(data), statusCode)
         }, failure: failure)
     }
     
-    func patch<T: Decodable>(model: T, _ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
+    public func patchModel<T: Decodable>(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
         patch(urlString, params: params, headers: headers, encoding: encoding, success: { (data, statusCode) in
             success?(self.decode(data), statusCode)
         }, failure: failure)
     }
     
-    func put<T: Decodable>(model: T, _ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
+    public func putModel<T: Decodable>(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
         put(urlString, params: params, headers: headers, encoding: encoding, success: { (data, statusCode) in
             success?(self.decode(data), statusCode)
         }, failure: failure)
     }
     
-    func delete<T: Decodable>(model: T, _ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
+    public func deleteModel<T: Decodable>(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: ((_ response: T?, _ statusCode: Int) -> Void)? = nil, failure: Failure? = nil) {
         delete(urlString, params: params, headers: headers, encoding: encoding, success: { (data, statusCode) in
             success?(self.decode(data), statusCode)
         }, failure: failure)
@@ -110,23 +108,23 @@ public class HTTP {
     
     // MARK: - HTTP Methods
     
-    func get(_ urlString: String, params: [String: Any]? = nil, headers: [String: String]? = nil, success: Success? = nil, failure: Failure? = nil) {
+    public func get(_ urlString: String, params: [String: Any]? = nil, headers: [String: String]? = nil, success: Success? = nil, failure: Failure? = nil) {
         execute(.get, urlString: urlString, params: params, encoding: URLEncoding.default, headers: headers, success: success, failure: failure)
     }
     
-    func post(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: Success? = nil, failure: Failure? = nil) {
+    public func post(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: Success? = nil, failure: Failure? = nil) {
         execute(.post, urlString: urlString, params: params, encoding: self.encoding(encoding), headers: headers, success: success, failure: failure)
     }
     
-    func patch(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: Success? = nil, failure: Failure? = nil) {
+    public func patch(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: Success? = nil, failure: Failure? = nil) {
         execute(.patch, urlString: urlString, params: params, encoding: self.encoding(encoding), headers: headers, success: success, failure: failure)
     }
     
-    func put(_ urlString: String, params: [String: Any]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: Success? = nil, failure: Failure? = nil) {
+    public func put(_ urlString: String, params: [String: Any]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: Success? = nil, failure: Failure? = nil) {
         execute(.put, urlString: urlString, params: params, encoding: self.encoding(encoding), headers: headers, success: success, failure: failure)
     }
     
-    func delete(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: Success? = nil, failure: Failure? = nil) {
+    public func delete(_ urlString: String, params: [String: AnyObject]? = nil, headers: [String: String]? = nil, encoding: HTTPEncoding = .url, success: Success? = nil, failure: Failure? = nil) {
         execute(.delete, urlString: urlString, params: params, encoding: self.encoding(encoding), headers: headers, success: success, failure: failure)
     }
     
