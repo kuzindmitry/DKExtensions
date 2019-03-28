@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension NSObject {
+public extension NSObject {
     
     static func fromXib(_ nib: String? = nil, owner: AnyObject? = nil) -> Self {
         let nibName = nib ?? self.nibName()
@@ -29,7 +29,7 @@ extension NSObject {
     
 }
 
-extension UINib {
+public extension UINib {
     
     func register(in table: UITableView, for identifier: String? = nil) {
         table.register(self, forCellReuseIdentifier: identifier ?? type(of: self).nibName())
@@ -37,7 +37,7 @@ extension UINib {
     
 }
 
-extension UITableView {
+public extension UITableView {
     
     func dequeueReusableCell<T: UITableViewCell>(_ type: T.Type, for indexPath: IndexPath) -> T {
         return dequeueReusableCell(withIdentifier: String(describing: type), for: indexPath) as! T

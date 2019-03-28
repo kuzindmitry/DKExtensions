@@ -18,7 +18,7 @@ protocol EntityDecodable {
     
 }
 
-extension EntityDecodable {
+public extension EntityDecodable {
     
     static func parse(json: JSONResponse) -> Model? {
         do {

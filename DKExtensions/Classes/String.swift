@@ -70,27 +70,36 @@ public extension String {
     
     // Substring
     
-    public func index(from: Int) -> Index {
+    func index(from: Int) -> Index {
         return self.index(startIndex, offsetBy: from)
     }
     
-    public func substring(to length: Int) -> String {
+    func substring(to length: Int) -> String {
         guard self.count > length else { return self }
         let r = self.startIndex..<self.index(self.startIndex, offsetBy: length)
         return String(self[r])
     }
     
-    public func substring(from index: Int) -> String {
+    func substring(from index: Int) -> String {
         guard index < self.count else { return self }
         let r = self.index(from: index) ..< self.endIndex
         return String(self[r])
     }
     
-    public func substring(with r: Range<Int>) -> String {
+    func substring(with r: Range<Int>) -> String {
         let startIndex = index(from: r.lowerBound)
         let endIndex = index(from: r.upperBound)
         let r = startIndex ..< endIndex
         return String(self[r])
+    }
+    
+    static func generateRandom(_ length: Int = 10) -> String {
+        let characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        var random: String = ""
+        for _ in 0..<length {
+            random += String(characters[characters.index(characters.startIndex, offsetBy: Int(arc4random_uniform(UInt32(characters.count))))])
+        }
+        return random
     }
     
 }

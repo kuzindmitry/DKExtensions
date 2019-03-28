@@ -44,7 +44,7 @@ public func >(lhs: Scale, rhs: Scale) -> Bool {
 
 public extension UIDevice {
     
-    public var screen: ScreenSize {
+    var screen: ScreenSize {
         let size = UIScreen.main.bounds.size
         let height = max(size.width, size.height)
         
@@ -62,7 +62,7 @@ public extension UIDevice {
         }
     }
     
-    public var scale: Scale {
+    var scale: Scale {
         let scale = UIScreen.main.scale
         
         switch scale {

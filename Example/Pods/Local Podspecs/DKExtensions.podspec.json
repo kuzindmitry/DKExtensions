@@ -3,20 +3,25 @@
   "version": "0.1.0",
   "summary": "A short description of DKExtensions.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/mahnach/DKExtensions",
+  "homepage": "https://github.com/kuzindmitry/DKExtensions",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "mahnach": "dmitry@kuzin.es"
+    "kuzindmitry": "dmitry@kuzin.es"
   },
   "source": {
-    "git": "https://github.com/mahnach/DKExtensions.git",
+    "git": "https://github.com/kuzindmitry/DKExtensions.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "DKExtensions/Classes/**/*"
+  "source_files": "DKExtensions/Classes/**/*",
+  "dependencies": {
+    "Alamofire": [
+
+    ]
+  }
 }

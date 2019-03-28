@@ -1,6 +1,6 @@
 # DKExtensions
 
-[![CI Status](https://img.shields.io/travis/mahnach/DKExtensions.svg?style=flat)](https://travis-ci.org/mahnach/DKExtensions)
+[![CI Status](https://img.shields.io/travis/kuzindmitry/DKExtensions.svg?style=flat)](https://travis-ci.org/mahnach/DKExtensions)
 [![Version](https://img.shields.io/cocoapods/v/DKExtensions.svg?style=flat)](https://cocoapods.org/pods/DKExtensions)
 [![License](https://img.shields.io/cocoapods/l/DKExtensions.svg?style=flat)](https://cocoapods.org/pods/DKExtensions)
 [![Platform](https://img.shields.io/cocoapods/p/DKExtensions.svg?style=flat)](https://cocoapods.org/pods/DKExtensions)
@@ -22,7 +22,7 @@ pod 'DKExtensions'
 
 ## Author
 
-mahnach, dmitry@kuzin.es
+kuzindmitry, dmitry@kuzin.es
 
 ## License
 

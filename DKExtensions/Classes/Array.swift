@@ -9,7 +9,7 @@ import UIKit
 
 public extension Array {
     
-    public func filterDuplicates(_ includeElement: (_ lhs: Element, _ rhs: Element) -> Bool) -> [Element] {
+    func filterDuplicates(_ includeElement: (_ lhs: Element, _ rhs: Element) -> Bool) -> [Element] {
         var results = [Element]()
         
         forEach { (element) in
@@ -26,15 +26,15 @@ public extension Array {
 
 public extension Array {
     
-    public func itemBefore(_ index: Int) -> Element? {
+    func itemBefore(_ index: Int) -> Element? {
         return item(at: index - 1)
     }
     
-    public func itemAfter(_ index: Int) -> Element? {
+    func itemAfter(_ index: Int) -> Element? {
         return item(at: index + 1)
     }
     
-    public func item(at index: Int) -> Element? {
+    func item(at index: Int) -> Element? {
         guard index >= 0 && index < count else {
             return nil
         }
@@ -45,11 +45,11 @@ public extension Array {
 
 public extension Array where Element: NSLayoutConstraint {
     
-    public func activate() {
+    func activate() {
         NSLayoutConstraint.activate(self)
     }
     
-    public func deactivate() {
+    func deactivate() {
         NSLayoutConstraint.deactivate(self)
     }
     
@@ -57,7 +57,7 @@ public extension Array where Element: NSLayoutConstraint {
 
 public extension Array {
     
-    public mutating func removeFirst(where predicate: (Element) throws -> Bool) rethrows {
+    mutating func removeFirst(where predicate: (Element) throws -> Bool) rethrows {
         guard let index = try index(where: predicate) else {
             return
         }
@@ -68,7 +68,7 @@ public extension Array {
 }
 
 public extension Sequence {
-    public func group<U: Hashable>(by key: (Iterator.Element) -> U) -> [U:[Iterator.Element]] {
+    func group<U: Hashable>(by key: (Iterator.Element) -> U) -> [U:[Iterator.Element]] {
         var categories: [U: [Iterator.Element]] = [:]
         for element in self {
             let key = key(element)
@@ -77,5 +77,11 @@ public extension Sequence {
             }
         }
         return categories
+    }
+}
+
+public extension Array {
+    subscript (safe index: Int) -> Element? {
+        return indices ~= index ? self[index] : nil
     }
 }

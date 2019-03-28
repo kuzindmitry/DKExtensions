@@ -19,11 +19,11 @@ public extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    static public func inNavigationStack() -> UIViewController {
+    static func inNavigationStack() -> UIViewController {
         return UINavigationController(rootViewController: controller())
     }
     
-    static public func controller() -> Self {
+    static func controller() -> Self {
         func controller<T>(_ type: T.Type) -> T {
             return storyboard().instantiateViewController(withIdentifier: storyboardIdentifier()) as! T
         }
@@ -31,32 +31,32 @@ public extension UIViewController {
         return controller(self)
     }
     
-    public class func storyboard() -> UIStoryboard {
+    class func storyboard() -> UIStoryboard {
         return UIStoryboard(name: storyboardName(), bundle: nil)
     }
     
     @objc
-    public class func storyboardName() -> String {
+    class func storyboardName() -> String {
         return "Main"
     }
     
-    public class func storyboardIdentifier() -> String {
+    class func storyboardIdentifier() -> String {
         return NSStringFromClass(self).components(separatedBy: ".").last!
     }
     
     @objc
-    @IBAction public func back() {
+    @IBAction func back() {
         let popped = navigationController?.popViewController(animated: true)
         if popped == nil {
             dismiss()
         }
     }
     
-    @IBAction public func prepareForUnwind(_ segue: UIStoryboardSegue) {
+    @IBAction func prepareForUnwind(_ segue: UIStoryboardSegue) {
         
     }
     
-    public func unwind() {
+    func unwind() {
         self.performSegue(withIdentifier: "unwind", sender: self)
     }
     
@@ -64,22 +64,22 @@ public extension UIViewController {
 
 public extension UIViewController {
     
-    public func present(_ classToPresent: UIViewController.Type, animated flag: Bool = true, completion: (() -> Swift.Void)? = nil) {
+    func present(_ classToPresent: UIViewController.Type, animated flag: Bool = true, completion: (() -> Swift.Void)? = nil) {
         present(classToPresent.controller(), animated: flag, completion: completion)
     }
     
-    public func push(_ viewController: UIViewController, animated: Bool = true) {
+    func push(_ viewController: UIViewController, animated: Bool = true) {
         navigationController?.pushViewController(viewController, animated: animated)
     }
     
-    public func dismiss() {
+    func dismiss() {
         dismiss(animated: true)
     }
     
 }
 
 public extension NSObject {
-    public var className: String {
+    var className: String {
         return String(describing: type(of: self))
     }
 }
