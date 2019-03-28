@@ -42,7 +42,7 @@ public extension String {
     
     // Size
     
-    func size(_ maxWidth: CGFloat, attributes: [NSAttributedStringKey: Any]) -> CGSize {
+    func size(_ maxWidth: CGFloat, attributes: [NSAttributedString.Key: Any]) -> CGSize {
         let string = (self as NSString)
         guard string.length != 0 else {
             return .zero
@@ -63,7 +63,7 @@ public extension String {
                       height: round(size.height))
     }
     
-    func height(_ maxWidth: CGFloat, attributes: [NSAttributedStringKey: Any]) -> CGFloat {
+    func height(_ maxWidth: CGFloat, attributes: [NSAttributedString.Key: Any]) -> CGFloat {
         return size(maxWidth, attributes: attributes).height
     }
 
