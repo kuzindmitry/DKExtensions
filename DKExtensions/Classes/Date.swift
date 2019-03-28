@@ -8,6 +8,12 @@ public extension Date {
         return formatter.string(from: self)
     }
     
+    static func from(string: String, format: String = "YYYY-MM-dd") -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.date(from: string) ?? Date()
+    }
+    
     // Components
     
     func component(_ component: Calendar.Component) -> Int {
